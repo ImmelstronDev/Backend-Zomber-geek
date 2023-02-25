@@ -36,7 +36,7 @@ class authController {
         }
     }
 
-    async login (req, res) {
+    async logIn (req, res) {
         try {
             const {userName, password} = req.body
             const user = await User.findOne({userName})
@@ -48,6 +48,7 @@ class authController {
                 return res.status(400).json({message: "this password is not correct, check login and password"})
             }
             const token = generateAccessToken(user._id, user.roles)
+            res.cookie('token', token, {maxAge: 24 * 60 * 60 * 1000, httpOnly: true})
             return res.json({token})
         } catch (error) {
             console.log(error)
@@ -55,10 +56,29 @@ class authController {
         }
     }
 
+    async logOut (res, req) {
+        try {
+            const user = await User.find()
+            res.clearCookie('token');
+            return res.json(user);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async getUsers (req, res) {
         try {
             const users = await User.find()
             res.json(users)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async getRoles (req, res) {
+        try {
+            const roles = await Role.find()
+            res.json(roles)
         } catch (error) {
             console.log(error)
         }

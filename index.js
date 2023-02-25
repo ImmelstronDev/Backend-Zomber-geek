@@ -1,8 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
 import router from "./router.js";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 const DB_URL = `mongodb+srv://user:user@cluster0.ocfyfud.mongodb.net/?retryWrites=true&w=majority`
 
@@ -10,6 +12,8 @@ const app = express();
 
 app.use(express.json())
 app.use('/api/auth', router)
+app.use(cookieParser())
+app.use(cors())
 
 // app.get('/', (req, res) => {
 //     console.log(req.query);
@@ -27,7 +31,5 @@ async function startApp() {
         console.log(e)
     }
 }
-
-
 
 startApp();
