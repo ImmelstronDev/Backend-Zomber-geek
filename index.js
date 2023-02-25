@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json())
 app.use('/api/auth', router)
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({credentials: true, origin:'https://deploy-preview-10--amazing-gaufre-1ebc58.netlify.app/'}))
 
 // app.get('/', (req, res) => {
 //     console.log(req.query);
