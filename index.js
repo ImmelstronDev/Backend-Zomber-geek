@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json())
 app.use('/api/auth', router)
 app.use(cookieParser())
-app.use(cors({credentials: true, origin:'*'}))
+app.use(cors())
 
 // ['https://deploy-preview-10--amazing-gaufre-1ebc58.netlify.app/', 'http://localhost:8080/', 'https://genuine-pastelito-0e12dc.netlify.app/']
 
