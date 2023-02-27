@@ -9,10 +9,11 @@ const PORT = process.env.PORT || 3000;
 const DB_URL = `mongodb+srv://user:user@cluster0.ocfyfud.mongodb.net/?retryWrites=true&w=majority`
 
 const app = express();
-app.use(cors({origin : ['https://deploy-preview-10--amazing-gaufre-1ebc58.netlify.app/', 'http://localhost:8080/', 'https://genuine-pastelito-0e12dc.netlify.app/'],
-//  credentials: true, 
+app.use(cors({origin : ["https://deploy-preview-10--amazing-gaufre-1ebc58.netlify.app/", "http://localhost:8080/", "https://genuine-pastelito-0e12dc.netlify.app/"],
+ credentials: true, 
  preflightContinue: true, 
- exposedHeaders: ['X-Access-Token']}))
+ exposedHeaders: ["X-Access-Token"],
+ methods: ["GET", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"]}))
 
 app.use(express.json())
 app.use(cookieParser())
