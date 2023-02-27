@@ -10,10 +10,10 @@ const DB_URL = `mongodb+srv://user:user@cluster0.ocfyfud.mongodb.net/?retryWrite
 
 const app = express();
 app.use(express.json())
-app.use(cors({origin : ["https://deploy-preview-10--amazing-gaufre-1ebc58.netlify.app/", "http://localhost:8080/", "https://genuine-pastelito-0e12dc.netlify.app/"],
+app.use(cors({origin : ["http://localhost:8080", "https://talentless-zomber-geek.netlify.app"],
  credentials: true, 
  preflightContinue: true, 
- exposedHeaders: ["X-Access-Token"],
+ exposedHeaders: ["token"],
  methods: ["GET", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"]}))
 
 app.use(cookieParser())

@@ -48,8 +48,8 @@ class authController {
                 return res.status(400).json({message: "this password is not correct, check login and password"})
             }
             const token = generateAccessToken(user._id, user.roles)
-            res.cookie('token', token, {maxAge: 24 * 60 * 60 * 1000, httpOnly: true})
-            return res.json({token})
+            return res.cookie('token', token, {maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "None", secure: true}).json({token})
+            // return res.json({token})
         } catch (error) {
             console.log(error)
             res.status(400).json({message: 'Login error'})
